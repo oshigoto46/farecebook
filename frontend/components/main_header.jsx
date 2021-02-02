@@ -24,8 +24,9 @@ class MainHeader extends React.Component {
     }
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this); // this._toggleDropDown
   }
+
 
   handleLogout(e) {
     e.preventDefault();
@@ -141,6 +142,7 @@ const mapStateToProps = state =>  {
     numNotifications: numUnreadNotifications,
   }
 };
+
 
 const mapDispatchToProps = dispatch => ({
   logout: ()=> dispatch(logout()),

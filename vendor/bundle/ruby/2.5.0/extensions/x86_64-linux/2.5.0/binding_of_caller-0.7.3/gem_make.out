@@ -1,0 +1,16 @@
+current directory: /root/farcebook/vendor/bundle/ruby/2.5.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+/root/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20210201-22302-np3dol.rb extconf.rb
+
+current directory: /root/farcebook/vendor/bundle/ruby/2.5.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+make "DESTDIR=" clean
+make: *** ターゲット `clean' を make するルールがありません.  中止.
+
+current directory: /root/farcebook/vendor/bundle/ruby/2.5.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+make "DESTDIR="
+echo "Nada."
+Nada.
+
+current directory: /root/farcebook/vendor/bundle/ruby/2.5.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+make "DESTDIR=" install
+echo "Nada."
+Nada.

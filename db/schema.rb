@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171102173701) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "body", null: false
     t.integer "post_id", null: false
     t.integer "author_id", null: false
@@ -26,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171102173701) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  create_table "friendships", force: :cascade do |t|
+  create_table "friendships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "requester_id", null: false
     t.integer "receiver_id", null: false
     t.string "status", default: "PENDING", null: false
@@ -35,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171102173701) do
     t.index ["receiver_id", "requester_id"], name: "index_friendships_on_receiver_id_and_requester_id", unique: true
   end
 
-  create_table "likes", force: :cascade do |t|
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "liker_id", null: false
     t.string "likable_type"
     t.bigint "likable_id"
@@ -45,7 +42,7 @@ ActiveRecord::Schema.define(version: 20171102173701) do
     t.index ["liker_id", "likable_id", "likable_type"], name: "index_likes_on_liker_id_and_likable_id_and_likable_type", unique: true
   end
 
-  create_table "notifications", force: :cascade do |t|
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "notifee_id", null: false
     t.integer "notifiable_id", null: false
     t.string "notifiable_type"
@@ -55,7 +52,7 @@ ActiveRecord::Schema.define(version: 20171102173701) do
     t.index ["notifee_id", "notifiable_id"], name: "index_on_user_notificaions", unique: true
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "body", null: false
     t.integer "author_id", null: false
     t.integer "receiver_id", null: false
@@ -63,13 +60,13 @@ ActiveRecord::Schema.define(version: 20171102173701) do
     t.datetime "updated_at", null: false
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["receiver_id"], name: "index_posts_on_receiver_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -80,11 +77,11 @@ ActiveRecord::Schema.define(version: 20171102173701) do
     t.datetime "updated_at", null: false
     t.string "profile_picture_file_name"
     t.string "profile_picture_content_type"
-    t.integer "profile_picture_file_size"
+    t.bigint "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
     t.string "cover_photo_file_name"
     t.string "cover_photo_content_type"
-    t.integer "cover_photo_file_size"
+    t.bigint "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
     t.string "hometown"
     t.string "current_city"

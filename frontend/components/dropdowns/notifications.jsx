@@ -21,6 +21,7 @@ class NotificationList extends React.Component {
   };
 
   componentDidMount() {
+    console.log()
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 

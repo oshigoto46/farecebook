@@ -34,6 +34,8 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
+    console.log(JSON.stringify(this.state));
+    console.log(JSON.stringify(this.props));
     const { location } = this.props
     this.props.fetchFeed();
     this.props.fetchRequests();

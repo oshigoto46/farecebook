@@ -8,13 +8,13 @@ const ProfileHeaderNav = ({ id, openTab }) => {
       <ul className='pos-rel'>
         <Link to={`/users/${id}`}>
           <li className={openTab === 'timeline' ? 'selected' : ''}>
-              Timeline
+              Timeliness
           </li>
         </Link>
         {/* <li>About</li> */}
         <Link to={`/users/${id}/friends`}>
           <li className={openTab === 'friends' ? 'selected' : ''}>
-              Friends
+              Friendsddd
           </li>
         </Link>
       </ul>

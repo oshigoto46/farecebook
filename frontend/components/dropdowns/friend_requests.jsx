@@ -18,6 +18,7 @@ class FriendRequestList extends React.Component {
   };
 
   componentDidMount() {
+    console.log(JSON.stringify(this.props));
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 

@@ -34,8 +34,8 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    console.log(JSON.stringify(this.state));
-    console.log(JSON.stringify(this.props));
+    console.log("MainHeader state" + JSON.stringify(this.state));
+    console.log("MainHeader props" + JSON.stringify(this.props));
     const { location } = this.props
     this.props.fetchFeed();
     this.props.fetchRequests();
@@ -46,11 +46,13 @@ class MainHeader extends React.Component {
   }
 
   openDropdown(type) {
+    console.log("MainHeader state" + "openDropdown");
     return () => {this.setState( { [type]: true })}
   }
 
   toggleDropdown(type){
     const value = this.state[type] ? false : true
+    console.log("Main Header toggleDropdown");
     return() => {this.setState( { [type]: value })}
   }
 
@@ -67,6 +69,7 @@ class MainHeader extends React.Component {
       <header className='main-header flex-row'>
         <div className='main-nav'>
           <div className='flex-row'>
+            {/* /* /ただのfacebookロゴ/ */ }
             <Link to='/' >
               <div id='pseudo-logo'>
                 <h1>f</h1>
@@ -76,6 +79,7 @@ class MainHeader extends React.Component {
               <SearchDropdown/>
               <i className="fa fa-search"
                  aria-hidden="true"
+                //  {/* aria -hiddenとは */}
                  id='search-button'>
               </i>
           </div>

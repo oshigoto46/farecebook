@@ -57,6 +57,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => {
+  console.log("======feed mapStateToProps" +(JSON.stringify(state)));
   const postIds = state.session.currentUser.feedIds
   return {
     postIds,

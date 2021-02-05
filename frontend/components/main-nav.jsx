@@ -2,6 +2,7 @@ import React from 'react';
 
 class MainNav extends React.Component {
   constructor(props){
+    console.log("MainNav" + JSON.stringify(props));
     super(props)
   }
 

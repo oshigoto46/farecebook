@@ -32,6 +32,7 @@ class PostShow extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
+    console.log("componentWillReceiveProps"+"再描画");
     const { receiver, author } = newProps;
     if (this.props.singlePost && newProps.postId !== this.props.postId) {
       this.props.fetchPost(newProps.postId)

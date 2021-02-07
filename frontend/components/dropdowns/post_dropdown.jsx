@@ -20,7 +20,7 @@ class PostDropdown extends React.Component {
 
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)){
-      this.props.close();
+      //this.props.close();
     }
   };
 

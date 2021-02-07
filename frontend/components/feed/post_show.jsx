@@ -16,6 +16,7 @@ class PostShow extends React.Component {
     super(props);
     this.state = { loading : true, dropdown: false, likerShow: false }
     this.toggleDropdown = this.toggleDropdown.bind(this)
+    this.__toggleLike = this.__toggleLike.bind(this)
     this.setNameInput = this.setNameInput.bind(this)
     this._toggleLike = this._toggleLike.bind(this)
     this._toggleLikerShow = this._toggleLikerShow.bind(this)
@@ -55,6 +56,11 @@ class PostShow extends React.Component {
     this.setState( { dropdown: !this.state.dropdown})
   }
 
+  __toggleLike(){
+     alert("hoge");
+
+  }
+
   _toggleLike(){
     if (this.props.post.currentUserLikes) {
       this.props.unlike(this.props.post.id)
@@ -64,7 +70,7 @@ class PostShow extends React.Component {
   }
 
   _toggleLikerShow(){
-    this.setState({ likerShow: !this.state.likerShow })
+    //this.setState({ likerShow: !this.state.likerShow })
   }
 
 
@@ -139,15 +145,26 @@ class PostShow extends React.Component {
           <img src={imageUrl} id='post-image'/>
         }
 
+        {(areFriends || isCurrentUser) &&
+            <ul>
+              <li style= {currentUserLikes ? {color: '#598dfb'} : {} }
+              onClick = {this.__toggleLike}
+               >
+                 hogehoge
+              </li>
+            </ul>
+        
+        } 
 
         {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
               onClick={this._toggleLike}>
-            <i
+            {/* あんま重要じゃないので削った
+              <i
               style={ currentUserLikes ? { color: '#598dfb'} : {} }
               className="fa fa-thumbs-o-up"
-              aria-hidden="true" />
+              aria-hidden="true" /> */}
           { currentUserLikes ?  "Unlike" : "Like"  }
           </li>
           <li onClick={ () => this.nameInput.focus()}>
@@ -157,13 +174,18 @@ class PostShow extends React.Component {
         </ul>
         }
 
+
+
+
         <div className='comment-area flex-col'>
           {liker_ids.length > 0 &&
+          // QA classNameでデザイナーさんとお話しているということかな？
             <h5 className='post-likes-show'>
               <i className="fa fa-thumbs-up pos-rel"
-                aria-hidden="true"
+                // aria-hidden="true"
                 onMouseEnter={this._toggleLikerShow}
-                onMouseLeave={this._toggleLikerShow}>
+                // onMouseLeave={this._toggleLikerShow}
+                >
                 { (this.state.likerShow &&  liker_ids.length > 0) &&
                 <aside>
                   <h3>Like</h3>
@@ -176,7 +198,7 @@ class PostShow extends React.Component {
           }
 
           {commentList}
-
+          {/* QA /&&の意味がわからないのとidがどっから取られているのか不明/ */}
           {(areFriends || isCurrentUser) &&
             <CommentForm postId={id}  nameInput={this.setNameInput}/>
           }
@@ -187,9 +209,54 @@ class PostShow extends React.Component {
 
 }
 
+
+// "posts": {
+//   "1": {
+//     "id": 1,
+//     "body": "test",
+//     "author_id": 2,
+//     "receiver_id": 2,
+//     "updated_at": "2021-02-07T09:10:39.000Z",
+//     "comment_ids": [
+//       6,
+//       7,
+//       8,
+//       9
+//     ],
+//     "imageUrl": "null",
+//     "liker_ids": [],
+//     "currentUserLikes": false
+//   },
+
 const mapStateToProps = (state, ownProps) => {
+  //自分につけられたコメント（post)の配列を取得
+  //[1.2.3]
+  const ownPost = state.entities.posts[ownProps.postId] || { comment_ids :[] , likers_ids: []}
+
   const post = state.entities.posts[ownProps.postId] ||
                                       { comment_ids: [], liker_ids: [] }
+
+  //[1.2.3].map(id =>{
+  // 
+  //  return state.entites.users[1]
+  //} userid が1の人
+
+  // comments
+  //
+
+  // "１": {
+  //   "id": 6,
+  //   "body": "fd",
+  //   "author_id": 2,
+  //   "post_id": 1,
+  //   "updated_at": "2021-02-07T09:31:25.000Z",
+  //   "parent_comment_id": null,
+  //   "liker_ids": [],
+  //   "child_comment_ids": [],
+  //   "currentUserLikes": false
+  // },
+
+                                
   const comments = post.comment_ids.map( id => {
     return state.entities.comments[id]
   })

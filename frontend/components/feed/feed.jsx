@@ -40,7 +40,7 @@ class Feed extends React.Component{
           <LeftSide currentUser={currentUser}/>
           <div className='main-center flex-col pos-rel'>
             <PostForm />
-            {/* {postList} */}
+            {postList}
           </div>
           <RightSide trends={trends}
                      loading={trendLoading}
@@ -55,6 +55,32 @@ const mapDispatchToProps = dispatch => ({
   fetchUsers: () => dispatch(fetchUsers()),
   fetchTrends: (source) => dispatch(fetchTrends(source)),
 });
+
+//state.session.currentUser
+// {
+//   "id": 2,
+//   "email": "hoge@gmail.com",
+//   "birth_date": "1999-02-01",
+//   "hometown": null,
+//   "current_city": null,
+//   "school": null,
+//   "workplace": null,
+//   "gender": "female",
+//   "firstName": "hoge",
+//   "fullName": "Hoge Hoge",
+//   "profile_picture_url": "https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg",
+//   "cover_photo_url": "https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpg",
+//   "friend_ids": [],
+//   "postIds": [
+//     2,
+//     1
+//   ],
+//   "unreadNotifications": 0,
+//   "feedIds": [
+//     2,
+//     1
+//   ]
+// }
 
 const mapStateToProps = state => {
   console.log("======feed mapStateToProps" +(JSON.stringify(state)));

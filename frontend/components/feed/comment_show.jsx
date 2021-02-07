@@ -120,7 +120,7 @@ class CommentShow extends React.Component {
                     title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")}
                     id='comment-time'
               >
-                <i>{convertTime(comment.updated_at)}</i>
+                <i>"convertTime(comment.updated_at"{convertTime(comment.updated_at)}</i>
               </Link>
             </div>
           </div>
@@ -134,7 +134,7 @@ class CommentShow extends React.Component {
             childComments={childComments} {...this.props}/> }
       {(this.state.showReplyForm && topLevelComment) &&
         <CommentForm postId={comment.post_id}
-                     smallForm
+                     smallForm="false"
                      commentId={comment.id} /> }
       </div>
     </div>

@@ -125,7 +125,7 @@ class PostShow extends React.Component {
             <Link to={`/users/${receiver.id}`}>
               <h2>{receiver.fullName}</h2>
             </Link> }
-
+ 
             <br></br>
             <Link to={`/posts/${id}`}>
               <i title={postTime.format("dddd, MMMM Do YYYY, h:mm:ss a")}>

@@ -46,6 +46,7 @@ class CommentShow extends React.Component {
   }
 
   _toggleLikerShow(){
+    alert("_toggleLikerShow");
     this.setState({ likerShow: !this.state.likerShow })
   }
 
@@ -113,7 +114,7 @@ class CommentShow extends React.Component {
                   </aside>
                   }
                   </i>
-                  <h5>{comment.liker_ids.length} ·</h5>
+                  <h5>{comment.liker_ids.length+100} ·</h5>
                 </figure>
               }
               <Link to={`/posts/${comment.post_id}` }

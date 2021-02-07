@@ -14,6 +14,10 @@
 require 'test_helper'
 
 class NotificationTest < ActiveSupport::TestCase
+  #test 'it converts multiples of fifteen to fizzbuzz' do
+  #  p "hoge"
+  #end
+
   # test "the truth" do
   #   assert true
   # end

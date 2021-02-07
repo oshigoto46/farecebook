@@ -27,7 +27,7 @@
 # statler.update(profile_picture: File.open("#{Rails.root}/app/assets/images/statler.jpg"))
 #
  Friendship.create!(requester_id: kermit.id, receiver_id: miss_piggy.id, status: 'ACCEPTED')
- Friendship.create!(requester_id: kermit.id, receiver_id: gonzo.id, status: 'ACCEPTED')
+# Friendship.create!(requester_id: kermit.id, receiver_id: gonzo.id, status: 'ACCEPTED')
 # Friendship.create!(requester_id: kermit.id, receiver_id: animal.id, status: 'ACCEPTED')
 # Friendship.create!(requester_id: kermit.id, receiver_id: statler.id, status: 'ACCEPTED')
 # Friendship.create!(requester_id: kermit.id, receiver_id: honeydew.id, status: 'ACCEPTED')

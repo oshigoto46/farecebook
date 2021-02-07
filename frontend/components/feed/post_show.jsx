@@ -22,8 +22,10 @@ class PostShow extends React.Component {
   }
 
   componentDidMount(){
+    console.log("componentDidMount"+"初回描画後");
+    console.log(JSON.stringify(this.props));
     const { receiver, author, singlePost, headerLoading } = this.props;
-    if (receiver || author) {
+    if (receiver || author) { 
       this.setState({ loading: false })
     }
     if (!Boolean(receiver) && singlePost && !headerLoading) {

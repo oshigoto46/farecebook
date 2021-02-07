@@ -1,5 +1,6 @@
 class Api::CommentsController < ApplicationController
 
+
   def create
     @comment = Comment.new(comment_params)
     @comment.author = current_user

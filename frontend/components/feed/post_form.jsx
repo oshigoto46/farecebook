@@ -18,12 +18,18 @@ class PostForm extends React.Component {
   }
 
   handleKeypress(e){
+    //エンターコードかな
     if (e.charCode == 13) {
       this.handleSubmit(e);
     }
   }
 
   handleSubmit(e){
+
+    console.log("--------PostForm handleSubmit");
+    console.log(JSON.stringify(this.props));
+    console.log("--------PostForm handleSubmit");
+    
     e.preventDefault();
     const file = this.state.imageFile;
     const formData = new FormData();

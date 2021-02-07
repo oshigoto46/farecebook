@@ -40,7 +40,7 @@ class Feed extends React.Component{
           <LeftSide currentUser={currentUser}/>
           <div className='main-center flex-col pos-rel'>
             <PostForm />
-            {postList}
+            {/* {postList} */}
           </div>
           <RightSide trends={trends}
                      loading={trendLoading}

@@ -1,5 +1,5 @@
 class Api::PostsController < ApplicationController
-  before_action :ensure_logged_in
+  #before_action :ensure_logged_in
 
   def feed
     @current_user = current_user

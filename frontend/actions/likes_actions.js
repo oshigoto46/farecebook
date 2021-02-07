@@ -17,6 +17,21 @@ const removeLike = ({ likeType, id, likers }) => ({
   likers,
 })
 
+export const _like = (type,id)  => dispatch => {
+     return LikeAPIUtil.like(type,id).then(
+       payload => dispatch(receiveLike(payload))
+     )
+}
+
+//なぜsendではないのか..
+export const _likeAction = (type, id) => dispatch => {
+  alert("_likeAction");
+  return LikeAPIUtil.like(type, id).then(
+    alert => alert(payload),
+    payload => dispatch(receiveLike(payload))
+  )
+}
+
 export const like = (type, id) => dispatch => {
   return LikeAPIUtil.like(type, id).then(
     payload => dispatch(receiveLike(payload))

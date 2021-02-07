@@ -6,7 +6,7 @@ import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost, fetchPost } from '../../actions/posts_actions'
 import { deleteComment } from '../../actions/comments_actions'
 import { openModal, closeModal } from '../../actions/ui_actions';
-import { like, unlike } from '../../actions/likes_actions';
+import { _likeAction, unlike } from '../../actions/likes_actions';
 import CommentForm from './comment_form'
 import CommentShow from './comment_show'
 import moment from 'moment'
@@ -16,7 +16,7 @@ class PostShow extends React.Component {
     super(props);
     this.state = { loading : true, dropdown: false, likerShow: false }
     this.toggleDropdown = this.toggleDropdown.bind(this)
-    this.__toggleLike = this.__toggleLike.bind(this)
+    this.__toggleLike = this._toggleLike.bind(this)
     this.setNameInput = this.setNameInput.bind(this)
     this._toggleLike = this._toggleLike.bind(this)
     this._toggleLikerShow = this._toggleLikerShow.bind(this)
@@ -56,11 +56,6 @@ class PostShow extends React.Component {
     this.setState( { dropdown: !this.state.dropdown})
   }
 
-  __toggleLike(){
-     alert("hoge");
-
-  }
-
   _toggleLike(){
     if (this.props.post.currentUserLikes) {
       this.props.unlike(this.props.post.id)
@@ -69,8 +64,9 @@ class PostShow extends React.Component {
     }
   }
 
+  //理解しました
   _toggleLikerShow(){
-    //this.setState({ likerShow: !this.state.likerShow })
+    this.setState({ likerShow: !this.state.likerShow })
   }
 
 
@@ -159,7 +155,7 @@ class PostShow extends React.Component {
         {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
-              onClick={this._toggleLike}>
+              onClick={this.__toggleLike}>
             {/* あんま重要じゃないので削った
               <i
               style={ currentUserLikes ? { color: '#598dfb'} : {} }
@@ -277,7 +273,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   delete: postId =>  () => dispatch(deletePost(postId)),
-  like: postId => dispatch(like('posts', postId)),
+  like: postId => dispatch(_likeAction('posts', postId)),
   unlike: postId => dispatch(unlike('posts', postId)),
   fetchPost: postId => dispatch(fetchPost(postId))
 });

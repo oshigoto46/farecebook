@@ -1,5 +1,5 @@
 import React from 'react';
-import { logout } from '../actions/session_actions';
+import { _logoutAction } from '../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/user_actions';
@@ -30,7 +30,7 @@ class MainHeader extends React.Component {
 
   handleLogout(e) {
     e.preventDefault();
-    this.props.logout();
+    this.props._logout();
   }
 
   componentDidMount(){
@@ -70,11 +70,14 @@ class MainHeader extends React.Component {
         <div className='main-nav'>
           <div className='flex-row'>
             {/* /* /ただのfacebookロゴ/ */ }
-            <Link to='/' >
+            {/* <Link to='/' >
               <div id='pseudo-logo'>
                 <h1>f</h1>
               </div>
-            </Link>
+            </Link> */}
+
+            <Link to='/'> hoge facebook </Link>
+
 
               <SearchDropdown/>
               <i className="fa fa-search"
@@ -152,6 +155,7 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = dispatch => ({
   logout: ()=> dispatch(logout()),
+  _logout : () => dispatch(_logoutAction()),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchRequests: () => dispatch(fetchFriendRequests()),
   fetchFeed: () => dispatch(fetchFeed()),

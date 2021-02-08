@@ -11,6 +11,7 @@ class FriendRequestList extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this)
   }
 
+  //ここは簡単
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)){
       this.props.close();

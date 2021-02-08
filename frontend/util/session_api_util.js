@@ -13,8 +13,14 @@ export const login = (user) => {
     data: { user }
   });
 };
-
-export const logout = () => {
+export const _logoutAction = () =>{
+   return $.ajax( {
+        url: 'api/session',
+        method : 'DELETE'
+   }
+   )
+}
+export const logoutAction = () => {
   return $.ajax({
     url: 'api/session',
     method: 'DELETE'

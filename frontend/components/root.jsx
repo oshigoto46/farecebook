@@ -1,7 +1,7 @@
 // import React from 'react';
 // import { Provider } from 'react-redux';
 // import App from './app';
-// import { HashRouter } from 'react-router-dom';
+ import { HashRouter } from 'react-router-dom';
 
 // const Root = ({ store }) => (
 //   <Provider store={store}>
@@ -16,11 +16,14 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import Layout from './layout'
+import App  from './app'
 
 const Root  = ({store}) =>(
   // 毎回再レンダリングをする
   <Provider store={store}> 
-    <Layout/>
+  <HashRouter>
+    <App/>
+  </HashRouter>
   </Provider>
 )
 

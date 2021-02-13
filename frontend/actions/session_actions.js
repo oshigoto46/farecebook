@@ -1,25 +1,48 @@
 import * as SessionApiUtil from '../util/session_api_util';
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
-export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+
+// なぜ exportがいるのだろう TODO
+
+const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+//export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+//export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+const RECEIVE_ERRORS = 'RECEIVE_ERRORSsss';
 
 
-export const receiveCurrentUser = (user) => {
-  return {
-    type: RECEIVE_CURRENT_USER,
-    user
-  };
-};
+//export const recieveCurrentUser = (user) => {
+export const recieveCurrentUser = (user) => {
+    return {
+      type: RECEIVE_CURRENT_USER,
+      user
+    }
+}
 
-export const receiveErrors = (errors, errorType) => {
-  return {
-    type: RECEIVE_ERRORS,
-    errors,
-    errorType
-  };
-};
+// export const receiveCurrentUser = (user) => {
+//   return {
+//     type: RECEIVE_CURRENT_USER,
+//     user
+//   };
+// };
 
-export const login = (user) => dispatch => {
-  return SessionApiUtil.login(user).then(
+// export const receiveErrors = (errors, errorType) => {
+//   return {
+//     type: RECEIVE_ERRORS,
+//     errors,
+//     errorType
+//   };
+// };
+
+export const receiveErrors = (errors,errorType) => {
+   return {
+      type: RECEIVE_ERRORS,
+      errors,
+      errorType
+   }
+}
+
+export const loginAction = (user) => dispatch => {
+  //return SessionApiUtil.login(user).then(
+  return SessionApiUtil.loginAPI(user).then(
+    //console.log("SessionApiUtil"),
     (user) => {
       dispatch(receiveCurrentUser(user));
     },

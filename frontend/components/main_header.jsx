@@ -1,5 +1,5 @@
 import React from 'react';
-import { _logoutAction } from '../actions/session_actions';
+import { logout } from '../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { fetchUsers } from '../actions/user_actions';
@@ -30,7 +30,7 @@ class MainHeader extends React.Component {
 
   handleLogout(e) {
     e.preventDefault();
-    this.props._logout();
+    this.props.logout();
   }
 
   componentDidMount(){
@@ -76,7 +76,7 @@ class MainHeader extends React.Component {
               </div>
             </Link> */}
 
-            <Link to='/'> hoge facebook </Link>
+            <Link to='/'> Login後の facebook </Link>
 
 
               <SearchDropdown/>
@@ -155,7 +155,6 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = dispatch => ({
   logout: ()=> dispatch(logout()),
-  _logout : () => dispatch(_logoutAction()),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchRequests: () => dispatch(fetchFriendRequests()),
   fetchFeed: () => dispatch(fetchFeed()),

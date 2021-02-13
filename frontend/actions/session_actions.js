@@ -5,11 +5,11 @@ import * as SessionApiUtil from '../util/session_api_util';
 const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 //export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 //export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
-const RECEIVE_ERRORS = 'RECEIVE_ERRORSsss';
+const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
 
 //export const recieveCurrentUser = (user) => {
-export const recieveCurrentUser = (user) => {
+export const receiveCurrentUser = (user) => {
     return {
       type: RECEIVE_CURRENT_USER,
       user
@@ -44,6 +44,7 @@ export const loginAction = (user) => dispatch => {
   return SessionApiUtil.loginAPI(user).then(
     //console.log("SessionApiUtil"),
     (user) => {
+      //actionにresponseを封じ込める
       dispatch(receiveCurrentUser(user));
     },
     (errors) => {

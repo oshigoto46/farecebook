@@ -9,17 +9,6 @@ const defaultState = {
   errors: [],
 };
 
-const _SessionReducer = (state= defaultState, action) =>{
-    switch(action.type){
-      case RECEIVE_CURRENT_USER:{
-         const currentUser = action.user;
-         return merge({},state,{currentUser})
-      }
-    }
-
-
-}
-
 const SessionReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER: {

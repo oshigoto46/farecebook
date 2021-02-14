@@ -5,7 +5,7 @@ class PostForm extends React.Component {
   constructor(props){
     super(props);
     this.state = { body: "",  imageFile: null, imageUrl: null  };
-    this.handleInput = this._handleInput.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.errorShow = this.errorShow.bind(this);
     this._hasErrors = this._hasErrors.bind(this)
@@ -13,26 +13,17 @@ class PostForm extends React.Component {
     this.updateFile = this.updateFile.bind(this)
   }
 
-  _handleInput(e){
-    this.setState({ body : e.target.value })
-  }
   handleInput(e){
-    ///this.setState( { body: e.target.value })
+    this.setState( { body: e.target.value })
   }
 
   handleKeypress(e){
-    //エンターコードかな
     if (e.charCode == 13) {
       this.handleSubmit(e);
     }
   }
 
   handleSubmit(e){
-
-    console.log("--------PostForm handleSubmit");
-    console.log(JSON.stringify(this.props));
-    console.log("--------PostForm handleSubmit");
-    
     e.preventDefault();
     const file = this.state.imageFile;
     const formData = new FormData();
@@ -103,7 +94,6 @@ class PostForm extends React.Component {
                 height="33px"
                 className='circle-thumb pos-abs' />
           <textarea
-          //  ただ描画しているだけ
             onChange={this.handleInput}
             onKeyPress={this.handleKeypress}
             style={this.state.imageUrl ? { width:'375px'} : {} }

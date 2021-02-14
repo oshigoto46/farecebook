@@ -20,7 +20,7 @@ class PostDropdown extends React.Component {
 
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)){
-      //this.props.close();
+      this.props.close();
     }
   };
 
@@ -29,7 +29,6 @@ class PostDropdown extends React.Component {
   }
 
   render(){
-    //isAuthorはこの画面では計算できないのか QA
     const { postId, isAuthor, modalOpen } = this.props;
     return (
       <div style={{ position: 'relative',
@@ -40,8 +39,8 @@ class PostDropdown extends React.Component {
             id='post-dropdown'
             ref={ (node) => this.wrapperRef=node}>
           {isAuthor &&
-            <li onClick={this.handleClick}>Edit Post(Post DropDown)</li>}
-            <li onClick={this.props.delete}>Delete Post(Delete DropDown)</li>
+            <li onClick={this.handleClick}>Edit Post</li>}
+            <li onClick={this.props.delete}>Delete Post</li>
 
             {modalOpen ?
             <PostEditForm postId={postId} /> : null}

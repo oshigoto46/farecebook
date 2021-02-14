@@ -24,9 +24,8 @@ class MainHeader extends React.Component {
     }
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this); // this._toggleDropDown
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
-
 
   handleLogout(e) {
     e.preventDefault();
@@ -34,8 +33,6 @@ class MainHeader extends React.Component {
   }
 
   componentDidMount(){
-    console.log("MainHeader state" + JSON.stringify(this.state));
-    console.log("MainHeader props" + JSON.stringify(this.props));
     const { location } = this.props
     this.props.fetchFeed();
     this.props.fetchRequests();
@@ -46,13 +43,11 @@ class MainHeader extends React.Component {
   }
 
   openDropdown(type) {
-    console.log("MainHeader state" + "openDropdown");
     return () => {this.setState( { [type]: true })}
   }
 
   toggleDropdown(type){
     const value = this.state[type] ? false : true
-    console.log("Main Header toggleDropdown");
     return() => {this.setState( { [type]: value })}
   }
 
@@ -69,20 +64,15 @@ class MainHeader extends React.Component {
       <header className='main-header flex-row'>
         <div className='main-nav'>
           <div className='flex-row'>
-            {/* /* /ただのfacebookロゴ/ */ }
-            {/* <Link to='/' >
+            <Link to='/' >
               <div id='pseudo-logo'>
                 <h1>f</h1>
               </div>
-            </Link> */}
-
-            <Link to='/'> Login後の facebook </Link>
-
+            </Link>
 
               <SearchDropdown/>
               <i className="fa fa-search"
                  aria-hidden="true"
-                //  {/* aria -hiddenとは */}
                  id='search-button'>
               </i>
           </div>
@@ -151,7 +141,6 @@ const mapStateToProps = state =>  {
     numNotifications: numUnreadNotifications,
   }
 };
-
 
 const mapDispatchToProps = dispatch => ({
   logout: ()=> dispatch(logout()),

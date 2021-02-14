@@ -5,10 +5,6 @@ export const fetchFriends = () => {
   })
 };
 
-
-//{"received":{"3":{"id":3,"requester_id":5,"requester_name":"hogehoge hogeo","
-//profile_picture_url":"https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg"}},"sent":[]}
-
 export const fetchFriendRequests = () => {
   return $.ajax({
     method: 'GET',

@@ -23,9 +23,6 @@ const removeRequest = ({ request, receiver, requester}) => ({
   requester
 });
 
-////{"received":{"3":{"id":3,"requester_id":5,"requester_name":"hogehoge hogeo","
-//profile_picture_url":"https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg"}},"sent":[]}
-
 export const fetchFriendRequests = () => dispatch => {
   return FriendAPIUtil.fetchFriendRequests().then(
     payload => dispatch(receiveRequests(payload)),

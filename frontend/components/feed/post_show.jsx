@@ -6,7 +6,7 @@ import PostDropdown from '../dropdowns/post_dropdown'
 import { deletePost, fetchPost } from '../../actions/posts_actions'
 import { deleteComment } from '../../actions/comments_actions'
 import { openModal, closeModal } from '../../actions/ui_actions';
-import { _likeAction, unlike } from '../../actions/likes_actions';
+import { like, unlike } from '../../actions/likes_actions';
 import CommentForm from './comment_form'
 import CommentShow from './comment_show'
 import moment from 'moment'
@@ -16,17 +16,14 @@ class PostShow extends React.Component {
     super(props);
     this.state = { loading : true, dropdown: false, likerShow: false }
     this.toggleDropdown = this.toggleDropdown.bind(this)
-    this.__toggleLike = this._toggleLike.bind(this)
     this.setNameInput = this.setNameInput.bind(this)
     this._toggleLike = this._toggleLike.bind(this)
     this._toggleLikerShow = this._toggleLikerShow.bind(this)
   }
 
   componentDidMount(){
-    console.log("componentDidMount"+"初回描画後");
-    console.log(JSON.stringify(this.props));
     const { receiver, author, singlePost, headerLoading } = this.props;
-    if (receiver || author) { 
+    if (receiver || author) {
       this.setState({ loading: false })
     }
     if (!Boolean(receiver) && singlePost && !headerLoading) {
@@ -35,7 +32,6 @@ class PostShow extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    console.log("componentWillReceiveProps"+"再描画");
     const { receiver, author } = newProps;
     if (this.props.singlePost && newProps.postId !== this.props.postId) {
       this.props.fetchPost(newProps.postId)
@@ -64,7 +60,6 @@ class PostShow extends React.Component {
     }
   }
 
-  //理解しました
   _toggleLikerShow(){
     this.setState({ likerShow: !this.state.likerShow })
   }
@@ -125,12 +120,12 @@ class PostShow extends React.Component {
             <Link to={`/users/${receiver.id}`}>
               <h2>{receiver.fullName}</h2>
             </Link> }
- 
+
             <br></br>
             <Link to={`/posts/${id}`}>
               <i title={postTime.format("dddd, MMMM Do YYYY, h:mm:ss a")}>
                 {convertTime(updated_at)}
-              </i> 
+              </i>
             </Link>
           </div>
         </div>
@@ -141,26 +136,15 @@ class PostShow extends React.Component {
           <img src={imageUrl} id='post-image'/>
         }
 
-        {(areFriends || isCurrentUser) &&
-            <ul>
-              <li style= {currentUserLikes ? {color: '#598dfb'} : {} }
-              onClick = {this.__toggleLike}
-               >
-                 hogehoge
-              </li>
-            </ul>
-        
-        } 
 
         {(areFriends || isCurrentUser) &&
         <ul className='flex-row' id='post-nav'>
           <li style={ currentUserLikes ? { color: '#598dfb'} : {} }
-              onClick={this.__toggleLike}>
-            {/* あんま重要じゃないので削った
-              <i
+              onClick={this._toggleLike}>
+            <i
               style={ currentUserLikes ? { color: '#598dfb'} : {} }
               className="fa fa-thumbs-o-up"
-              aria-hidden="true" /> */}
+              aria-hidden="true" />
           { currentUserLikes ?  "Unlike" : "Like"  }
           </li>
           <li onClick={ () => this.nameInput.focus()}>
@@ -170,18 +154,13 @@ class PostShow extends React.Component {
         </ul>
         }
 
-
-
-
         <div className='comment-area flex-col'>
           {liker_ids.length > 0 &&
-          // QA classNameでデザイナーさんとお話しているということかな？
             <h5 className='post-likes-show'>
               <i className="fa fa-thumbs-up pos-rel"
-                // aria-hidden="true"
+                aria-hidden="true"
                 onMouseEnter={this._toggleLikerShow}
-                // onMouseLeave={this._toggleLikerShow}
-                >
+                onMouseLeave={this._toggleLikerShow}>
                 { (this.state.likerShow &&  liker_ids.length > 0) &&
                 <aside>
                   <h3>Like</h3>
@@ -194,7 +173,7 @@ class PostShow extends React.Component {
           }
 
           {commentList}
-          {/* QA /&&の意味がわからないのとidがどっから取られているのか不明/ */}
+
           {(areFriends || isCurrentUser) &&
             <CommentForm postId={id}  nameInput={this.setNameInput}/>
           }
@@ -205,54 +184,9 @@ class PostShow extends React.Component {
 
 }
 
-
-// "posts": {
-//   "1": {
-//     "id": 1,
-//     "body": "test",
-//     "author_id": 2,
-//     "receiver_id": 2,
-//     "updated_at": "2021-02-07T09:10:39.000Z",
-//     "comment_ids": [
-//       6,
-//       7,
-//       8,
-//       9
-//     ],
-//     "imageUrl": "null",
-//     "liker_ids": [],
-//     "currentUserLikes": false
-//   },
-
 const mapStateToProps = (state, ownProps) => {
-  //自分につけられたコメント（post)の配列を取得
-  //[1.2.3]
-  const ownPost = state.entities.posts[ownProps.postId] || { comment_ids :[] , likers_ids: []}
-
   const post = state.entities.posts[ownProps.postId] ||
                                       { comment_ids: [], liker_ids: [] }
-
-  //[1.2.3].map(id =>{
-  // 
-  //  return state.entites.users[1]
-  //} userid が1の人
-
-  // comments
-  //
-
-  // "１": {
-  //   "id": 6,
-  //   "body": "fd",
-  //   "author_id": 2,
-  //   "post_id": 1,
-  //   "updated_at": "2021-02-07T09:31:25.000Z",
-  //   "parent_comment_id": null,
-  //   "liker_ids": [],
-  //   "child_comment_ids": [],
-  //   "currentUserLikes": false
-  // },
-
-                                
   const comments = post.comment_ids.map( id => {
     return state.entities.comments[id]
   })
@@ -273,7 +207,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   delete: postId =>  () => dispatch(deletePost(postId)),
-  like: postId => dispatch(_likeAction('posts', postId)),
+  like: postId => dispatch(like('posts', postId)),
   unlike: postId => dispatch(unlike('posts', postId)),
   fetchPost: postId => dispatch(fetchPost(postId))
 });

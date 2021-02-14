@@ -10,7 +10,6 @@ import _ from 'lodash';
 
 class NotificationList extends React.Component {
   constructor(props){
-    console.log("NotificationList"+JSON.stringify(props));
     super(props)
     this.handleClickOutside = this.handleClickOutside.bind(this)
   }
@@ -22,7 +21,6 @@ class NotificationList extends React.Component {
   };
 
   componentDidMount() {
-    console.log()
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 
@@ -58,7 +56,6 @@ class NotificationList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("mapStateToProps" + JSON.stringify(state));
   const notifs = state.entities.notifications
   const notifications = parseNotifications(notifs, state)
   return {

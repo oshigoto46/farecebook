@@ -16,34 +16,3 @@ const configureStore = (preloadedState = {} ) => {
 }
 
 export default configureStore;
-
-// import { createStore, applyMiddleware } from 'redux';
-// import thunk from 'redux-thunk';
-// import RootReducer from '../reducers/root_reducer';
-
-
-// const middleWares = [thunk];
-
-// if(process.env.NODE_ENV !== 'production'){
-//     const{logger} = require('redux-logger')
-//     middleWares.push(logger);
-//     //本番環境意外ではmiddlewareにloggerを追加
-// }
-
-// const configureStore = (preloadedState = {}) =>{
-//     console.log(JSON.stringify(RootReducer));
-//     return createStore(RootReducer, preloadedState, applyMiddleware(...middleWares))
-// }
-
-// export default configureStore;
-
-
-
-
-
-
-
-
-
-
-

@@ -12,23 +12,11 @@ class SearchDropdown extends React.Component {
       cursor: 0,
      }
 
-    this._handleInput = this.handleInput.bind(this)
+    this.handleInput = this.handleInput.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this._toggleSearch = this._toggleSearch.bind(this)
     this._clearState = this._clearState.bind(this)
     this.changeCursor = this.changeCursor.bind(this)
-  }
-
- //TODO アロー関数ってなんだっけ.. アロー関数だったり何も返さなかったりする件
-  _toggleSearch2(event){
-      return () => {
-
-        if(event ==='focus'){
-                
-
-        }
-
-      }
   }
 
 
@@ -40,24 +28,6 @@ class SearchDropdown extends React.Component {
         }, 150)
       }
     }
-  }
-
-  handleInputSearch(e){
-
-    //再代入だめなletの使い方 TODO
-      let _currentUsers = _.filter(
-
-
-      )
-
-      //入力されなかったらNot Found
-      if(e.target.value === ""){
-         _currentUser = []
-      }
-      
-      
-
-
   }
 
   handleInput(e){
@@ -105,16 +75,6 @@ class SearchDropdown extends React.Component {
 
 
   render(){
-    
-    const _userList = this.state.currentUsers.map( (u,i) =>{
-       return (
-                    <Link to={``}>
-                      
-                    </Link>
-       )
-    })
-
-
     const userList = this.state.currentUsers.map( (user, i) => {
       return (
         <div key={user.id}
@@ -122,26 +82,23 @@ class SearchDropdown extends React.Component {
              onClick={this._clearState}
         >
           <Link to={`/users/${user.id}`}>
-            {/* 一旦コメントアウト */}
-            {/* <figure className={ this.state.cursor === i ? 'active' : ''}>
+            <figure className={ this.state.cursor === i ? 'active' : ''}>
               <img src={user.profile_picture_url}
                   width="22px"
                   height="22px"
                   className='circle-thumb'
-              /> */}
+              />
                 {user.fullName}
-            {/* </figure> */}
+            </figure>
           </Link>
         </div>
       )
     })
     return (
       <div>
-        <input onFocus={this._toggleSearch('focus')} 
-               //onFocus フォーカスがあたったとき dropダウンメニューだしているだけ
+        <input onFocus={this._toggleSearch('focus')}
                onBlur={this._toggleSearch('blur')}
-               //onBlur フォーカスが離れたとき　↑なんの処理もしていないので.. 実質いらない..
-               onChange={this._handleInput}
+               onChange={this.handleInput}
                onKeyDown={this.handleKeyDown}
                id='search-bar'
                placeholder='Search users'
@@ -149,7 +106,6 @@ class SearchDropdown extends React.Component {
         </input>
         {this.state.dropdown &&
         <div id='search-dropdown' onKeyDown={this.handleKeyDown}>
-           {/* {userList.length > 0 ? alert(userList) : <h4>No Search Results Found</h4>} */}
           {userList.length > 0 ? userList : <h4>No Search Results Found</h4>}
         </div>}
       </div>
@@ -159,7 +115,6 @@ class SearchDropdown extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  //TODO なぜこれがそもそもstateなのか.. propos.entitiesじゃないのか。。
   users: state.entities.users
 })
 

@@ -57,16 +57,14 @@ export class FriendButton extends React.Component {
     }
   }
 }
-                              //Hoge (ログイン）-> S tab （リクエストした人）
+
 export const requestPending = (state, user) => {
-                         // Hoge側の　state.entities.frinedRequests.sent 送ったひとリストに S tabが含まれていたら　
   const hasSentRequest = state.entities.friendRequests.sent.includes(parseInt(user));
-                         // someの用法はわかったが.. ここを紐解く .. TODO
   const hasReceivedRequest = _.values(state.entities.friendRequests.received)
-                                  .some( request => { //
+                                  .some( request => {
                                     return request.requester_id === (parseInt(user))
                                   });
-  return (hasSentRequest || hasReceivedRequest) // どっちががtrue だったら trueが変える
+  return (hasSentRequest || hasReceivedRequest)
 }
 
 export const convertTime = (time) => {

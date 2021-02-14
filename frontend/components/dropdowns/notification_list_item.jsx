@@ -11,13 +11,10 @@ class NotificationListItem extends React.Component {
 
   _readNotification(){
     const { notification, readNotification, close } = this.props
-    console.log("_readNotification22222"+JSON.stringify(this.props));
     if (notification.unread) {
-      //readNotification(notification);
+      readNotification(notification);
     }
-    console.log("close====" + JSON.stringify(close));
     close();
-    console.log("close====" + JSON.stringify(close));
   }
 
   render() {

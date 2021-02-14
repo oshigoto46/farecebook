@@ -67,7 +67,7 @@ class ProfileMain extends React.Component{
                 <button id='already-friends'
                         className='hover'
                         onClick={addFriend(user.id)}>
-                  Add Friend(plus)
+                  Add Friend
                 </button> }
             </div>
           </div>
@@ -109,7 +109,6 @@ const mapStateToProps = (state, ownProps) => {
     isCurrentUser: state.session.currentUser.id === parseInt(ownProps.match.params.userId),
     notFriends: !user.friend_ids.includes(state.session.currentUser.id),
     requestPending: requestPending(state, user.id),
-                                  //Hoge -> S tab
   })
 };
 

@@ -46,7 +46,6 @@ class CommentShow extends React.Component {
   }
 
   _toggleLikerShow(){
-    alert("_toggleLikerShow");
     this.setState({ likerShow: !this.state.likerShow })
   }
 
@@ -114,14 +113,14 @@ class CommentShow extends React.Component {
                   </aside>
                   }
                   </i>
-                  <h5>{comment.liker_ids.length+100} ·</h5>
+                  <h5>{comment.liker_ids.length} ·</h5>
                 </figure>
               }
               <Link to={`/posts/${comment.post_id}` }
                     title={date.format("dddd, MMMM Do YYYY, h:mm:ss a")}
                     id='comment-time'
               >
-                <i>"convertTime(comment.updated_at"{convertTime(comment.updated_at)}</i>
+                <i>{convertTime(comment.updated_at)}</i>
               </Link>
             </div>
           </div>
@@ -135,7 +134,7 @@ class CommentShow extends React.Component {
             childComments={childComments} {...this.props}/> }
       {(this.state.showReplyForm && topLevelComment) &&
         <CommentForm postId={comment.post_id}
-                     smallForm="false"
+                     smallForm
                      commentId={comment.id} /> }
       </div>
     </div>

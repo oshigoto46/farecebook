@@ -7,6 +7,7 @@ import _ from 'lodash'
 
 class FriendRequestList extends React.Component {
   constructor(props){
+    alert(JSON.stringify(props));
     super(props);
     this.handleClickOutside = this.handleClickOutside.bind(this)
   }

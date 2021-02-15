@@ -8,9 +8,11 @@ import ShowOnePost from './show_one_post'
 import Feed from './feed/feed';
 import NotFoundPage from './not-found'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import Parent from './parent'
 
 const App = () => (
   <div>
+    <Parent />
     <AuthRoute exact path='/' component={SplashHeader}/>
     <ProtectedRoute path='/' component={MainHeader}/>
     <main id='main-container'>

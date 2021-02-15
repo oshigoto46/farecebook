@@ -14,82 +14,48 @@ import { Route, Switch } from 'react-router-dom';
 import { ScaleLoader } from 'react-spinners';
 
 
-class ProfileMainBack extends React.Component {
 
-  constructor(props) {
+class ProfileMain extends React.Component{
+  constructor(props){
     super(props);
   }
 
-　 
-
-
-
-
-}
-
-const mapStateToProps = (state,ownProps) =>{
-     const user = state.entities.users[] || {frineds_ids: [], postIds: []}
-
-
-}
-
-const mapStateToProps = (state, ownProps) => {
-  const user = state.entities.users[ownProps.match.params.userId] || { friend_ids: [], postIds: [] }
-  const friends = user.friend_ids.map(id => state.entities.users[id])
-  const postIds = user.postIds
-  return ({
-    user,
-    friends,
-    postIds,
-    loading: state.ui.loading,
-    isCurrentUser: state.session.currentUser.id === parseInt(ownProps.match.params.userId),
-    notFriends: !user.friend_ids.includes(state.session.currentUser.id),
-    requestPending: requestPending(state, user.id),
-  })
-};
-
-
-class ProfileMainBack extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
+  componentDidMount(){
     if (!this.props.isCurrentUser || this.props.notFriends) {
       this.props.fetchPosts(parseInt(this.props.match.params.userId));
     }
-    if (!this.props.user.birth_date) {
+    if (!this.props.user.birth_date){
       this.props.fetchUser(this.props.match.params.userId)
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(newProps){
     if (this.props.loading) return;
     const userId = newProps.match.params.userId
     if (this.props.user.id !== parseInt(userId)) {
       this.props.fetchUser(userId);
-      document.getElementsByClassName('scroll-container')[0].scrollTop = 0
+      document.getElementsByClassName('scroll-container')[0].scrollTop=0
     }
   }
 
 
-  render() {
+  render(){
     const { notFriends, loading, addFriend, friends,
-      isCurrentUser, user, requestPending, fetchUser,
-      match, postIds } = this.props;
+            isCurrentUser, user, requestPending, fetchUser,
+            match, postIds } = this.props;
 
-    const postList = postIds.map(id => {
+    const postList = postIds.map( id => {
       return (
         <PostShow key={id} postId={id}
-          areFriends={!notFriends}
-          isCurrentUser={isCurrentUser}
-          profileId={user.id} />
+                          areFriends={!notFriends}
+                          isCurrentUser={isCurrentUser}
+                          profileId={user.id}/>
       )
     });
     return (
       <div id='main-container' className='scroll-container'>
         <ProfileHeader userId={match.params.userId}
-          fetchUser={fetchUser}
+                       fetchUser={fetchUser}
         />
         { !loading && notFriends && !isCurrentUser &&
           <div className='not-friends'>
@@ -99,32 +65,32 @@ class ProfileMainBack extends React.Component {
                   send them a friend request!</p>
               {requestPending ? null :
                 <button id='already-friends'
-                  className='hover'
-                  onClick={addFriend(user.id)}>
+                        className='hover'
+                        onClick={addFriend(user.id)}>
                   Add Friend
-                </button>}
+                </button> }
             </div>
           </div>
         }
         <Switch>
           <Route path='/users/:userId/friends' component={FriendsPage} />
-          <Route path='/users/:userId' render={() =>
-            !loading ? (
+          <Route path='/users/:userId' render={ () =>
+             !loading ? (
               <main className='profile-body'>
                 <aside>
-                  <ProfileAboutList userId={user.id} />
-                  <ProfileFriendsList friends={friends} />
+                  <ProfileAboutList userId={user.id}/>
+                  <ProfileFriendsList friends={friends}/>
                 </aside>
                 <section className='flex-col profile-feed'>
                   <PostForm isWallPost={isCurrentUser ? false : true}
-                    receiver={user} />
+                            receiver={user} />
                   {postList}
                 </section>
-              </main>) : (
-                <div className='loading'>
-                  <ScaleLoader color='#93949b' />
-                </div>
-              )} />
+              </main> ) : (
+              <div className='loading'>
+                <ScaleLoader color='#93949b'  />
+              </div>
+           )}/>
         </Switch>
       </div>
     )
@@ -132,8 +98,8 @@ class ProfileMainBack extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const user = state.entities.users[ownProps.match.params.userId] || { friend_ids: [], postIds: [] }
-  const friends = user.friend_ids.map(id => state.entities.users[id])
+  const user = state.entities.users[ownProps.match.params.userId] || { friend_ids:[], postIds:[]}
+  const friends = user.friend_ids.map( id => state.entities.users[id])
   const postIds = user.postIds
   return ({
     user,

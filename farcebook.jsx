@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     delete window.currentUser;
   } else {
     store = configureStore();
-    console.log("configureStore長後" + JSON.stringify(store));
   }
 
   window.dispatch = store.dispatch;
@@ -30,17 +29,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
 });
-
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import configureStore from './store/store'
-// import Root from './components/root'
-
-// document.addEventListener('DOMContentLoaded',()=>{
-//      let store = {}
-//      //ReactDOM.render(<Layout/>,document.getElementById('root'))
-//      store = configureStore();
-//      console.log("configureStore長後" + JSON.stringify(store));
-//      ReactDOM.render(<Root store={store}/>,document.getElementById('root'))
-// });

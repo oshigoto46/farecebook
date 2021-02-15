@@ -11,7 +11,7 @@ const ProfileHeaderNav = ({ id, openTab }) => {
               Timeline
           </li>
         </Link>
-        {/* <li>About</li> */}
+        <li>About</li>
         <Link to={`/users/${id}/friends`}>
           <li className={openTab === 'friends' ? 'selected' : ''}>
               Friends

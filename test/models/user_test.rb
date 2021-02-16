@@ -34,8 +34,6 @@ class UserTest < ActiveSupport::TestCase
   # end
   test "the truth" do
     @user = User.new(email: "hoge@gmail.com", first_name:"hopge", last_name:"fufga",gender: "male",password_digest: "hogehogehoge",password:"aaaaaaaaa" ,birth_date:"2020-01-02")
-    @user.save
-    p @user.errors
-    
+    assert  @user.save
   end
 end

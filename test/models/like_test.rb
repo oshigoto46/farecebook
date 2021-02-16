@@ -19,12 +19,28 @@ class LikeTest < ActiveSupport::TestCase
   end
 
   test "like save" do
-    @user = User.new(first_name:"hopge", last_name:"fufga",gender: "male",password_digest: "hogehogehoge",password:"aaaa" )
-    rtn1 = @user.save
-    p rtn1
-    rtn =  @like.save
-    p rtn
+    @user = User.new(email: "hoge@gmail.com", first_name:"hopge", last_name:"fufga",gender: "male",password_digest: "hogehogehoge",password:"aaaaaaaaa" ,birth_date:"2020-01-02")
+    
+    #@user.liker = @like
+    #rtn =  @like.save
+    @user.save
+    #p @like.errors
     #assert @like.valid?
+  end
+
+  test "comment likes" do
+     @user = User.new(email: "hoge@gmail.com", first_name:"hopge", last_name:"fufga",gender: "male",password_digest: "hogehogehoge",password:"aaaaaaaaa" ,birth_date:"2020-01-02")
+     @user.save
+     @user.update(email:"fugafuga@gmail.com")
+     #@user.destroy
+     p User.all
+     new_like =  Like.new(liker_id: @user.id)
+     @comment =  Comment.new(body: "hogehogehoge", post_id: 1 , author_id: 1) 
+    
+    #  @comment.likes << new_like
+    #  @comment.author_id = @user.id
+    #  p @comment
+    #  assert @comment.save
   end
   # test "the truth" do
   #   assert true

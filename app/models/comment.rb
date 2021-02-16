@@ -12,13 +12,17 @@
 #
 
 class Comment < ApplicationRecord
+  validate : :body, :post_id, :author_id , presence:true
   validates :body, :post_id, :author_id, presence:true
   validates :body, length: { maximum: 300 }
 
-  belongs_to :author,
-    class_name: 'User'
+  belongs_to :author
+     class_name: 'Users'
 
-  belongs_to :post
+  # belongs_to :author,
+  #   class_name: 'User'
+
+  # belongs_to :post
 
   belongs_to :parent_comment,
     class_name: 'Comment',

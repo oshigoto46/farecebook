@@ -1,5 +1,4 @@
 import React from 'react';
-//import Hello from '../../Hello';
 import Hello from '../../frontend/components/hello'
 import renderer from 'react-test-renderer';
 

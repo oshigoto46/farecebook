@@ -7,10 +7,12 @@ import ProfileMain from './profile/profile_main';
 import ShowOnePost from './show_one_post'
 import Feed from './feed/feed';
 import NotFoundPage from './not-found'
+import Hello from './hello'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div>
+    {/* <Hello name="Neko"/> */}
     <AuthRoute exact path='/' component={SplashHeader}/>
     <ProtectedRoute path='/' component={MainHeader}/>
     <main id='main-container'>

@@ -2,6 +2,12 @@ class Api::PostsController < ApplicationController
   #before_action :ensure_logged_in
 
   def feed
+    #--- adhock oshigoto46
+    if(!@current_user) 
+      @current_user = User.all[0]
+    end
+    logger.info("@current_user" + @current_user.inspect)
+
     @current_user = current_user
     @users = User.all
     @notifications = @current_user.notifications.order(created_at: :desc)

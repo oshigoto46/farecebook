@@ -40,6 +40,7 @@ const removePost = payload => ({
 
 export const fetchFeed = (userId) => dispatch => {
   return PostAPIUtil.fetchFeed(userId).then(
+   
     payload => dispatch(receiveFeed(payload)),
     errors => dispatch(receiveErrors(errors, 'posts'))
   )

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import _ from  "lodash"; 
 
-function extractNotification (json: any): number{
-    console.log(json)
-    const notifications :any[] = json.notifications
-    // return notifications.map((notification: any) => {
-    //    console.log(notification)
-    //   //  return{
-    //   //    posts: notification
-    //   //   } 
-    // })
-    //return notifications;
-    return (_.keys(json.posts).length);
-    //eturn json.posts;
-}
+// function extractNotification (json: any): number{
+//     console.log(json)
+//     const notifications :any[] = json.notifications
+//     // return notifications.map((notification: any) => {
+//     //    console.log(notification)
+//     //   //  return{
+//     //   //    posts: notification
+//     //   //   } 
+//     // })
+//     //return notifications;
+//     //return (_.keys(json.posts).length);
+//     //eturn json.posts;
+// }
 
 const FeedAPI = () => {
   const [count, setCount] = useState(0);
@@ -26,7 +26,7 @@ const FeedAPI = () => {
           return res.json();
         })
         .then((json) => {
-          setCount(extractNotification(json))
+          setCount((json.notifications))
           // return json
           //return extractBooks(json);
         })
@@ -36,7 +36,7 @@ const FeedAPI = () => {
     
   }, []);
   
-  return <div>{count}</div>;
+  return <div>1111</div>;
 };
 
 export default FeedAPI;

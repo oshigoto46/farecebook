@@ -4,6 +4,8 @@ import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
 import FlagIcon from '@material-ui/icons/Flag';
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
+import Notifications from "./Notifications";
+
 import "./Header.css"
 
 const customStyles = {
@@ -36,23 +38,7 @@ const Header = () => {
       setModalIsOpen(false);
     };
 
-    const  getNotifications = () => {
-      const url = "http://54.65.109.14:3000/api/feed";
-      fetch(url)
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-         const notifications :any[] = json.notifications
-         console.log("notifications" + notifications);
-         return notifications;
-        // return json
-        //return extractBooks(json);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    };
+   
 
 
     return <div className="header__left">
@@ -71,7 +57,7 @@ const Header = () => {
         onRequestClose={handleModalClose}
         style={customStyles}
       >
-        {getNotifications()}
+        <Notifications />
         
       </Modal>
     </div>;

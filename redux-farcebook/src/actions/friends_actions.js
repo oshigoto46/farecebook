@@ -5,11 +5,6 @@ export const RECEIVE_REQUESTS = 'RECEIVE_REQUESTS';
 export const SEND_REQUEST = 'SEND_REQUEST';
 export const REMOVE_REQUEST = 'REMOVE_REQUEST';
 
-// {"received":{"2":{"id":2,"requester_id":3,"requester_name":"daisan sya","profile_picture_url"
-// :"https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg"},"3":
-// {"id":3,"requester_id":4,"requester_name":"aa bb","profile_picture_url"
-// :"https://s3.us-east-2.amazonaws.com/farcebook-dev/default.jpeg"}},"sent":[]}% 
-
 const receiveRequests = ({received, sent}) => ({
   type: RECEIVE_REQUESTS,
   received,

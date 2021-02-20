@@ -21,7 +21,6 @@ class MainHeader extends React.Component {
       notificationDropdown: false,
       searchTerm: "",
       cursor: 0,
-
     }
     this.closeDropdown = this.closeDropdown.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
@@ -59,10 +58,7 @@ class MainHeader extends React.Component {
     const { searchDropdown, requestDropdown,
             notificationDropdown, searchTerm, cursor } = this.state
     const { numNotifications, userName,
-              numRequestsProps} = this.props
-          //    userId, userPic, numRequests} = this.props
-
-    
+              userId, userPic, numRequests} = this.props
 
     return (
       <header className='main-header flex-row'>
@@ -93,7 +89,7 @@ class MainHeader extends React.Component {
 
         <div className="flex-row">
           <ul className='flex-row nav-list' id='main-nav-list'>
-            {/* <li className='flex-row'>
+            <li className='flex-row'>
               <img src={userPic}
                     width="25px"
                     height="25px"
@@ -101,7 +97,7 @@ class MainHeader extends React.Component {
               <Link to={`/users/${userId}`}>
                 <h2>{userName}</h2>
               </Link>
-            </li> */}
+            </li>
             <li>
               <Link to='/'>
                 <h2>Home</h2>
@@ -110,20 +106,13 @@ class MainHeader extends React.Component {
           </ul>
 
           <MainNav toggle={this.toggleDropdown}
-                  // numRequests={numRequests}
+                  numRequests={numRequests}
                   />
-
-          {numRequestsProps >0 && 
-            <div id='num-requests'>
-               {numRequestsProps}
-            </div>
-          }
-
-          {/* {numRequests > 0 &&
+          {numRequests > 0 &&
             <div id='num-requests'>
               {numRequests}
             </div>
-          } */}
+          }
 
           {numNotifications > 0 &&
             <div id='num-requests' style={ {right: '115px'}}>
@@ -146,10 +135,9 @@ const mapStateToProps = state =>  {
   const numUnreadNotifications = notifs.filter( notif => notif.unread).length
   return {
     userName: _.capitalize(state.session.currentUser.firstName),
-    //userId: state.session.currentUser.id,
-    //userPic: state.session.currentUser.profile_picture_url,
-    //numRequests: _.keys(state.entities.friendRequests.received).length,
-    numRequestsProps:  _.keys(state.entities.friendRequests.received).length,
+    userId: state.session.currentUser.id,
+    userPic: state.session.currentUser.profile_picture_url,
+    numRequests: _.keys(state.entities.friendRequests.received).length,
     numNotifications: numUnreadNotifications,
   }
 };

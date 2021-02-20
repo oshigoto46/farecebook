@@ -1,5 +1,7 @@
 class Api::NotificationsController < ApplicationController
   def index
+    logger.debug("==========friends-request========")
+    logger.debug(Notification.all)
     @notifications = Notification.where(notifee_id: current_user.id)
   end
 

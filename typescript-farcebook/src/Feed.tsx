@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import _ from  "lodash"; 
+import Comments from "./Comments";
 
 // function extractNotification (json: any): number{
 //     console.log(json)
@@ -26,7 +27,7 @@ const FeedAPI = () => {
           return res.json();
         })
         .then((json) => {
-          setCount((json.notifications))
+          console.log((json.posts))
           // return json
           //return extractBooks(json);
         })
@@ -36,7 +37,7 @@ const FeedAPI = () => {
     
   }, []);
   
-  return <div>1111</div>;
+  return <div><Comments></Comments></div>;
 };
 
 export default FeedAPI;

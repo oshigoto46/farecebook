@@ -22,12 +22,13 @@ const Notifications = () => {
           return res.json();
         })
         .then((json) => {
+           console.log("notifications" + json);
            const notifications :any[] = json.notifications
            console.log("notifications" + JSON.stringify(notifications[0]));
            setNotifications(notifications);
         })
         .catch((err) => {
-          console.error(err);
+          console.error("err" + err);
         });
       },[]);
 
